@@ -17,7 +17,7 @@ def find_lca(root, n1, n2):
         return root
 
     return left if left is not None else right
-
+#comment
 root = Node(1)
 root.left = Node(2)
 root.right = Node(3)
