@@ -33,7 +33,21 @@ class TestLCA(unittest.TestCase):
         lca_test = lca()
         root = Node(1)
 
-        self.assertEqual(lca_test.find_lca(root, 8, 20), None)   
+        self.assertEqual(lca_test.find_lca(root, 8, 20), None)  
+
+    def test_lca_notValid(self): 
+        lca_test = lca()
+
+        root = Node(50)
+        root.left = Node(15)
+        root.right = Node(62)
+        root.left.left = Node(5)
+        root.left.right = Node(20)
+        root.left.left.left = Node(3)
+
+        self.assertEqual(lca_test.find_lca(root, 7, 2), None)
+
+
 
 if __name__ == '__main__':
     unittest.main()
