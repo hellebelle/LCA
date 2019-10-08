@@ -21,9 +21,9 @@ class TestLCA(unittest.TestCase):
         root.right.right = Node(91)
 
 
-        self.assertEqual(lca_test.find_lca(root, root.left.left.right, root.left.left ), 15)
+        self.assertEqual(lca_test.find_lca(root, 8, 20).key, 15)
 
-
+        
 
 if __name__ == '__main__':
     unittest.main()
