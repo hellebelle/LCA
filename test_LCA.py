@@ -29,7 +29,11 @@ class TestLCA(unittest.TestCase):
         
         self.assertEqual(lca_test.find_lca(root, 8, 20), None)
 
-       
+    def test_lca_oneNode(self):
+        lca_test = lca()
+        root = Node(1)
+
+        self.assertEqual(lca_test.find_lca(root, 8, 20), None)   
 
 if __name__ == '__main__':
     unittest.main()
