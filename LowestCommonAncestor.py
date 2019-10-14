@@ -1,9 +1,11 @@
 class Node:
     #constructor to create a new binary node
-    def __init__(self,key):
+    def __init__(self,key,next_nodes):
         self.key = key
-        self.left = None
-        self.right = None
+        self.parents = next_nodes
+        self.colour = None
+        self.count = 0
+        self.root = False
 
 class lca:
 
