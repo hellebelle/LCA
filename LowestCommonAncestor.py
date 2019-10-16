@@ -1,8 +1,10 @@
+import collections
+
 class Node:
     #constructor to create a new binary node
     def __init__(self,key,next_nodes):
         self.key = key
-        self.parents = next_nodes
+        self.parents = collections.deque(maxlen = 2)
         self.colour = None
         self.count = 0
         self.root = False
@@ -10,6 +12,9 @@ class Node:
 class lca:
 
     def find_lca(self, root, n1, n2):
+        self.bfs(n1)
+        self.bfs(n2)
+
         if root is None:
             return None
         if root.key == n1 or root.key == n2:
@@ -22,5 +27,12 @@ class lca:
 
         return left if left is not None else right
 
-
+    def bfs(self,node):
+        visited = []
+        if node:
+            visited.append(node) 
+            print node.key
+        current = node
+        while current:
+            if current.parents[0]
         
