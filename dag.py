@@ -5,23 +5,31 @@ class DAG:
     def __init__(self, dag):
         self.dag = dag
 
-    def add_node(self, key):
-        for node, connections in self.dag.items():
-            if key == node.key:
+    def add_node(self, node):
+        for n, connections in self.dag.items():
+            if n.key == node.key:
                 return
-        if key:
-            self.dag[key] = []
+        if node:
+            self.dag[node] = []
         
     def add_nodes(self, nodes):
-        for node in nodes:
+        for n in nodes:
+            node = Node(n)
             self.add_node(node)
         
 
     def add_edge(self,nodeA,node_list):
-        if nodeA in self.dag:
-            for i in node_list:
-                if i in self.dag:
-                    self.dag[nodeA].append(i)
+        for i in self.dag.keys():
+            if nodeA.key == i.key:
+                for j in node_list:
+                    self.dag[i].append(j)
+                    
+
+        # if nodeA.key in self.dag.keys():
+        #     print("23")
+        #     for i in node_list:
+        #         if i in self.dag:
+        #             self.dag[nodeA].append(i)
 
 
     def find_path(self, nodeA, nodeB, path = []):
@@ -51,20 +59,32 @@ class DAG:
                 for neighbour in neighbours:
                     queue.append(neighbour)
         return explored
+
+    def print_graph(self, graph):
+        g = {}
+        for k, v in graph.items():
+            edges = []
+            for i in v:
+                edges.append(i.key)
+            g[k.key] = edges
+
+        for k, v in g.items():
+            print(k, v)
+
 if __name__ == "__main__":
     
     graph = {}
     dag = DAG(graph)
-
-    dag.add_node(Node(1))
+    nodes = list(range(1,9))
+    dag.add_nodes(nodes)
     
-    # dag.add_edge(1,[4])
-    # dag.add_edge(2,[4])
-    # dag.add_edge(3,[4])
-    # dag.add_edge(4,[5,6,7])
-    # dag.add_edge(5,[8])
-    # dag.add_edge(6,[8])
-    # dag.add_edge(7,[8])
+    dag.add_edge(Node(1),[Node(4)])
+    dag.add_edge(Node(2),[Node(4)])
+    dag.add_edge(Node(3),[Node(4)])
+    dag.add_edge(Node(4),[Node(5),Node(6),Node(7)])
+    dag.add_edge(Node(5),[Node(8)])
+    dag.add_edge(Node(6),[Node(8)])
+    dag.add_edge(Node(7),[Node(8)])
     '''dag.add_node(4)
     dag.add_node(6)
     dag.add_node(7)
@@ -74,9 +94,8 @@ if __name__ == "__main__":
     dag.add_edge(7,[4,6])
     '''
     #explored = dag.bfs(dag.dag, 1)
-
-    for k, v in dag.dag.items():
-        print(k.key)
+    dag.print_graph(dag.dag)
+   
     
     # print(explored)
 
