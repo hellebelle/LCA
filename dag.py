@@ -25,26 +25,20 @@ class DAG:
                     self.dag[i].append(j)
                     
 
-        # if nodeA.key in self.dag.keys():
-        #     print("23")
-        #     for i in node_list:
-        #         if i in self.dag:
-        #             self.dag[nodeA].append(i)
 
-
-    def find_path(self, nodeA, nodeB, path = []):
-        path = path + [nodeA]
-        if nodeA == nodeB:
-            return path
-        if not self.dag.has_key(nodeA):
-            return None
+    # def find_path(self, nodeA, nodeB, path = []):
+    #     path = path + [nodeA]
+    #     if nodeA == nodeB:
+    #         return path
+    #     if not self.dag.has_key(nodeA):
+    #         return None
     
         # visits all the nodes of a graph (connected component) using BFS
     def bfs(self, graph, start):
         # keep track of all visited nodes
         explored = []
         # keep track of nodes to be checked
-        queue = [start]
+        queue = [start.key]
     
         # keep looping until there are nodes still to be checked
         while queue:
@@ -85,17 +79,10 @@ if __name__ == "__main__":
     dag.add_edge(Node(5),[Node(8)])
     dag.add_edge(Node(6),[Node(8)])
     dag.add_edge(Node(7),[Node(8)])
-    '''dag.add_node(4)
-    dag.add_node(6)
-    dag.add_node(7)
-    dag.add_node(8)
 
-    dag.add_edge(4,[6,10])
-    dag.add_edge(7,[4,6])
-    '''
-    #explored = dag.bfs(dag.dag, 1)
+    explored = dag.bfs(dag.dag, Node(1))
     dag.print_graph(dag.dag)
    
     
-    # print(explored)
+    print(explored)
 
