@@ -2,7 +2,7 @@ import collections
 
 class Node:
     #constructor to create a new binary node
-    def __init__(self,key,next_nodes):
+    def __init__(self,key):
         self.key = key
         self.parents = collections.deque(maxlen = 2)
         self.colour = None
@@ -27,7 +27,7 @@ class lca:
 
         return left if left is not None else right
 
-    def bfs(self,node):
+    ''' def bfs(self,node):
         visited = []
         if node:
             visited.append(node) 
@@ -35,4 +35,5 @@ class lca:
         current = node
         while current:
             if current.parents[0]
+    '''
         
