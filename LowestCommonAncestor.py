@@ -1,39 +1,36 @@
-import collections
-
-class Node:
-    #constructor to create a new binary node
-    def __init__(self,key):
-        self.key = key
-        self.parents = collections.deque(maxlen = 2)
-        self.colour = None
-        self.count = 0
-        self.root = False
+import networkx
 
 class lca:
 
-    def find_lca(self, root, n1, n2):
-        self.bfs(n1)
-        self.bfs(n2)
+    def do_lca(self, graph, x, y):
+        lca = networkx.algorithms.lowest_common_ancestor(graph, x, y)
+        return lca
 
-        if root is None:
-            return None
-        if root.key == n1 or root.key == n2:
-            return root
-        left = self.find_lca(root.left, n1, n2)
-        right = self.find_lca(root.right, n1, n2)
+    def check_acyclic(self, graph):
+        if_acyclic = networkx.is_directed_acyclic_graph(graph)
+        return if_acyclic
 
-        if left and right:
-            return root
+if __name__ == "__main__":
+    lca = lca()
 
-        return left if left is not None else right
+    G = networkx.DiGraph()
+    map(G.add_node, range(1, 8))
+    G.add_edge(1, 2)
+    G.add_edge(1, 3)
+    G.add_edge(2, 4)
+    G.add_edge(2, 5)
+    G.add_edge(3, 6)
+    G.add_edge(4, 7)
+    G.add_edge(5, 7)
+    G.add_edge(6, 5)
+    G.add_edge(6, 7)
 
-    ''' def bfs(self,node):
-        visited = []
-        if node:
-            visited.append(node) 
-            print node.key
-        current = node
-        while current:
-            if current.parents[0]
-    '''
-        
+    lca_a = lca.do_lca(G, 4, 6)
+    if_acyclic = lca.check_acyclic(G)
+    print(if_acyclic)
+    print(lca_a)
+
+
+
+
+    	
